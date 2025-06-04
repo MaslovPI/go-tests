@@ -11,3 +11,7 @@ func Repeat(character string) string {
 	}
 	return repeated.String()
 }
+
+// - repeat count as a parameter + test
+// - example test
+// - look through strings lib and write examples and tests
