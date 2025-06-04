@@ -10,5 +10,14 @@ func Repeat(character string, repeatCount uint) string {
 	return repeated.String()
 }
 
-// - example test
-// - look through strings lib and write examples and tests
+func RepeatWithSeparation(character, separator string, repeatCount uint) string {
+	var repeated strings.Builder
+	var i uint
+	for ; i < repeatCount; i++ {
+		repeated.WriteString(character)
+		if i != repeatCount-1 {
+			repeated.WriteString(separator)
+		}
+	}
+	return repeated.String()
+}
