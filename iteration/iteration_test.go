@@ -1,6 +1,7 @@
 package iteration
 
 import (
+	"fmt"
 	"math/rand/v2"
 	"testing"
 )
@@ -34,4 +35,10 @@ func BenchmarkRepeat(b *testing.B) {
 	for b.Loop() {
 		Repeat("a", randRange(10))
 	}
+}
+
+func ExampleRepeat() {
+	str := Repeat("q", 10)
+	fmt.Println(str)
+	// Output: qqqqqqqqqq
 }
