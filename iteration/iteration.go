@@ -12,8 +12,7 @@ func Repeat(character string, repeatCount uint) string {
 
 func RepeatWithSeparation(character, separator string, repeatCount uint) string {
 	var repeated strings.Builder
-	var i uint
-	for ; i < repeatCount; i++ {
+	for i := range repeatCount {
 		repeated.WriteString(character)
 		if i != repeatCount-1 {
 			repeated.WriteString(separator)
