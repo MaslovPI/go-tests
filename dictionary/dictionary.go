@@ -1,8 +1,11 @@
 package dictionary
 
 const (
-	ErrNotFound   = DictionaryErr("could not find the word you were looking for")
-	ErrWordExists = DictionaryErr("cannot add word because it already exists")
+	ErrNotFound         = DictionaryErr("could not find the word you were looking for")
+	ErrWordExists       = DictionaryErr("cannot add word because it already exists")
+	ErrWordDoesNotExist = DictionaryErr(
+		"cannot perform operation on word because it does not exist",
+	)
 )
 
 type DictionaryErr string
@@ -22,10 +25,30 @@ func (d Dictionary) Search(word string) (string, error) {
 }
 
 func (d Dictionary) Add(word, definition string) error {
-	_, exists := d[word]
-	if exists {
+	if d.exists(word) {
 		return ErrWordExists
 	}
 	d[word] = definition
 	return nil
+}
+
+func (d Dictionary) Update(word, definition string) error {
+	if !d.exists(word) {
+		return ErrWordDoesNotExist
+	}
+	d[word] = definition
+	return nil
+}
+
+func (d Dictionary) Delete(word string) error {
+	if !d.exists(word) {
+		return ErrWordDoesNotExist
+	}
+	delete(d, word)
+	return nil
+}
+
+func (d Dictionary) exists(word string) bool {
+	_, exists := d[word]
+	return exists
 }
